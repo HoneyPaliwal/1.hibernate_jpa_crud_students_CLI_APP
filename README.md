@@ -4,7 +4,7 @@ This is a simple Student Management CLI (Command Line Interface) application bui
 
 Prerequisites
 
-Java 17 or higher
+Java 23 or higher
 
 MySQL Server
 
@@ -70,7 +70,18 @@ To delete an existing student, run the CLI with only the following method:
 
 deleteStudent(studentDAO);
 
-Or use SQL queries like these:
+Please Note that if you deleted the student and then create method is called then the ids will be auto increments and hence the space where the student was deleted that id will remain empty.
+eg - 
+you deleted student with id = 3
+then you created new students
+Id is auto increment thus the new student id will be 4 and not 3.
+To modify, run the below sql 
+ALTER TABLE student AUTO_INCREMENT = 1;
+
+Note: If using IntelliJ, clear caches after running the above command if needed.
+
+
+Other SQL that you may need in the project - 
 
 To delete student records by a range of IDs:
 
@@ -80,9 +91,4 @@ Or to delete specific student IDs:
 
 DELETE FROM student WHERE id IN (1, 2, 3);
 
-If you’ve deleted records and want the auto-increment ID to restart from 1:
-
-ALTER TABLE student AUTO_INCREMENT = 1;
-
-Note: If using IntelliJ, clear caches after running the above command if needed.
-
+Thanks.
